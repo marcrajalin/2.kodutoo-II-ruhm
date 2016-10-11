@@ -22,7 +22,6 @@
 	$signupPasswordError = "";
 	$signupEmail = "";
 	$signupmobilenumberError = "";
-	$signupGender = "";
 	$error = "";
 	
 	// on üldse olemas selline muutja
@@ -76,16 +75,6 @@
 	}
 	}
 	
-	// GENDER
-	if( isset( $_POST["signupGender"] ) ){
-		
-		if(!empty( $_POST["signupGender"] ) ){
-		
-			$signupGender = $_POST["signupGender"];
-			
-		}
-		
-	} 
 	
 	// peab olema email ja parool
 	// ühtegi errorit
@@ -164,23 +153,7 @@
 		
 		
 		
-		<?php if($signupGender == "male") { ?>
-			<input type="radio" name="signupGender" value="male" checked> Male<br>
-		<?php }else { ?>
-			<input type="radio" name="signupGender" value="male"> Male<br>
-		<?php } ?>
 		
-		<?php if($signupGender == "female") { ?>
-			<input type="radio" name="signupGender" value="female" checked> Female<br>
-		<?php }else { ?>
-			<input type="radio" name="signupGender" value="female"> Female<br>
-		<?php } ?>
-		
-		<?php if($signupGender == "other") { ?>
-			<input type="radio" name="signupGender" value="other" checked> Other<br>
-		<?php }else { ?>
-			<input type="radio" name="signupGender" value="other"> Other<br>
-		<?php } ?>
 		<br>
 		<label>E-post</label>
 		<br>

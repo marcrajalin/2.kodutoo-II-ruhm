@@ -92,15 +92,15 @@
 	
 	
 	
-	function saveauto ($plate, $color) {
+	function saveauto ($problem, $wheretosend, $date) {
 		
 		$database = "if16_marcraja_2";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
-		$stmt = $mysqli->prepare("INSERT INTO auto (plate, color) VALUES (?, ?)");
+		$stmt = $mysqli->prepare("INSERT INTO korjattava (problem, wheretosend, date) VALUES (?, ?, ?)");
 	
 		echo $mysqli->error;
 		
-		$stmt->bind_param("ss", $plate, $color);
+		$stmt->bind_param("sss", $problem, $wheretosend, $date);
 		
 		if($stmt->execute()) {
 			echo "salvestamine õnnestus";
@@ -118,12 +118,12 @@
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 		
 		$stmt = $mysqli->prepare("
-			SELECT id, plate, color
-			FROM auto
+			SELECT id, problem, wheretosend, date
+			FROM korjattava
 		");
 		echo $mysqli->error;
 		
-		$stmt->bind_result($id, $plate, $color);
+		$stmt->bind_result($id, $problem, $wheretosend, $date);
 		$stmt->execute();
 		
 		//tekitan massiivi
@@ -137,11 +137,12 @@
 			//tekitan objekti
 			$car = new StdClass();
 			$car->id = $id;
-			$car->plate = $plate;
-			$car->carColor = $color;
+			$car->problem = $problem;
+			$car->carColor = $wheretosend;
+			$car->date = $date;
 			
 			
-			echo $plate."<br>";
+			//echo $problem."<br>";
 			//iga kord massiivi lisan juurde nr märgi
 			array_push ($result, $car);
 		} 
@@ -150,6 +151,7 @@
 		$mysqli->close();
 		
 		return $result;
+	
 		
 	}
 		
