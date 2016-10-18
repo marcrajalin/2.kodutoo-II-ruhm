@@ -23,6 +23,8 @@
 	$signupEmail = "";
 	$signupmobilenumberError = "";
 	$error = "";
+	$loginEmail = "";
+	$loginEmailError = "";
 	
 	// on üldse olemas selline muutja
 	if( isset( $_POST["signupEmail"] ) ){
@@ -40,7 +42,23 @@
 			
 		}
 		
-	} 
+	}
+
+if( isset( $_POST["loginEmail"] ) ){
+		
+		//jah on olemas
+		//kas on tühi
+		if( empty( $_POST["loginEmail"] ) ){
+			
+			$loginEmailError = "See väli on kohustuslik";
+			
+		} else {
+			
+			// email olemas 
+			$loginEmail = $_POST["loginEmail"];
+			
+		}
+}		
 	
 	if( isset( $_POST["signupPassword"] ) ){
 		
@@ -109,6 +127,8 @@
 	if (isset($_POST["loginEmail"]) && isset ($_POST["loginPassword"]) &&
 		!empty($_POST["loginEmail"]) && !empty($_POST["loginPassword"]))
 		{
+		
+			
 			
 			$error = login($_POST["loginEmail"], $_POST["loginPassword"]);
 		}
@@ -133,7 +153,7 @@
 		<label>E-post</label>
 		<br>
 		
-		<input name="loginEmail" type="text">
+		<input name="loginEmail" type="text" value="<?=$loginEmail;?>"> <?=$loginEmailError;?>
 		<br><br>
 		
 		<input type="password" name="loginPassword" placeholder="Parool">

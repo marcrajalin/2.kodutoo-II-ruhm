@@ -92,7 +92,7 @@
 	
 	
 	
-	function saveauto ($problem, $wheretosend, $date) {
+	function savecars ($problem, $wheretosend, $date) {
 		
 		$database = "if16_marcraja_2";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);

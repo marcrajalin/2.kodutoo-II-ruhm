@@ -27,7 +27,7 @@
 		  
 		  $new_date = date('Y-m-d', strtotime($_POST['date']));
 		  echo "tere";
-		saveauto($_POST["problem"], $_POST["wheretosend"], $new_date);
+		savecars($_POST["problem"], $_POST["wheretosend"], $new_date);
 		
 	}
 	//saan köik auto andmed
